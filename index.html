@@ -3,55 +3,89 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sasvata</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>SASVATA</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <header>
-<img class="logo" src="logo.jpg" alt="Sastava">
 
+  <header class="navbar">
+    <div class="logo">SASVATA</div>
     <nav>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#newsletter">Newsletter</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </nav>
   </header>
 
-  <main>
-    <section class="hero">
-      <h1>Elevate Your Elegance</h1>
-      <p>Discover handcrafted jewelry that speaks your style.</p>
-      <button onclick="scrollToSection('contact')">Shop Now</button>
-    </section>
+  <section class="hero">
+    <h1>Shine Bright with Timeless Elegance</h1>
+    <p>Discover handcrafted jewelry to match your every mood.</p>
+    <a href="#products" class="btn">Shop Now</a>
+  </section>
 
-    <section id="about">
-      <h2>About Us</h2>
-      <p>
-        We specialize in curating elegant, unique jewelry and accessories for every occasion.
-        With a blend of modern design and timeless tradition, each piece is crafted with passion and precision.
-      </p>
-    </section>
+  <section id="about" class="section about">
+    <h2>About Us</h2>
+    <p>We believe jewelry is more than an accessory—it's an expression. Our collection is crafted with love, care, and an eye for elegance.</p>
+  </section>
 
-    <section class="newsletter">
-      <h2>Stay in the Loop</h2>
-      <p>Sign up for our newsletter to get updates on new arrivals and exclusive offers.</p>
-      <form id="newsletter-form">
-        <input type="email" placeholder="Enter your email" required />
-        <button type="submit">Subscribe</button>
-      </form>
-      <p id="subscribe-message"></p>
-    </section>
+  <section id="products" class="section products">
+    <h2>Our Collection</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="https://via.placeholder.com/300x300" alt="Product 1"/>
+        <h3>Golden Aura Ring</h3>
+        <p>$49.99</p>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/300x300" alt="Product 2"/>
+        <h3>Moonlight Earrings</h3>
+        <p>$39.99</p>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/300x300" alt="Product 3"/>
+        <h3>Vintage Pearl Necklace</h3>
+        <p>$59.99</p>
+      </div>
+    </div>
+  </section>
 
-    <section id="contact">
-      <h2>Contact Us</h2>
-      <p>Email: hello@jewelsaccessories.com</p>
-      <p>Instagram: @jewelsaccessories</p>
-    </section>
-  </main>
+  <section id="testimonials" class="section testimonials">
+    <h2>Customer Love</h2>
+    <div class="testimonial">
+      <p>"Absolutely stunning! I get compliments every time I wear them!"</p>
+      <span>- Nirmala Duddula</span>
+    </div>
+    <div class="testimonial">
+      <p>"Quick delivery, beautiful packaging. Highly recommend!"</p>
+      <span>- Madhuri Duddula</span>
+    </div>
+  </section>
 
-  <footer>
-    <p>© 2025 Jewels & Accessories. All rights reserved.</p>
+  <section id="newsletter" class="section newsletter">
+    <h2>Join Our Newsletter</h2>
+    <p>Get updates on latest launches, deals, and style tips.</p>
+    <form id="newsletter-form">
+      <input type="email" placeholder="Enter your email" required/>
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
+
+  <section id="contact" class="section contact">
+    <h2>Contact Us</h2>
+    <p>Have questions? We'd love to hear from you.</p>
+    <p>Email: hellosasvata@gmail.com</p>
+    <p>Instagram: @sasvata</p>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2025 sasvata. All rights reserved.</p>
   </footer>
 
   <script src="script.js"></script>
 </body>
 </html>
+
