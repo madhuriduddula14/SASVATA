@@ -1,11 +1,11 @@
 // Newsletter subscription
-const newsletterForm = document.getElementById('newsletter-form');
-if (newsletterForm) {
-  newsletterForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    alert('Thanks for subscribing! 💌');
-  });
-}
+// const newsletterForm = document.getElementById('newsletter-form');
+// if (newsletterForm) {
+//   newsletterForm.addEventListener('submit', function (e) {
+//     e.preventDefault();
+//     alert('Thanks for subscribing! 💌');
+//   });
+// }
 
 // Search function
 function searchProducts() {
