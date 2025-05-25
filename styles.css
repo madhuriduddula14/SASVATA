@@ -132,3 +132,26 @@ body {
   color: #aa6c39;
   font-weight: bold;
 }
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+  gap: 0.5rem;
+}
+
+.search-container input {
+  padding: 0.5rem;
+  width: 250px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+}
+
+.search-container button {
+  padding: 0.5rem 1rem;
+  background-color: #aa6c39;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
