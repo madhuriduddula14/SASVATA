@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wishlist - SASVATA</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">SASVATA</div>
+    <nav>
+      <ul>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#products">Products</a></li>
+        <li><a href="index.html#testimonials">Testimonials</a></li>
+        <li><a href="index.html#newsletter">Newsletter</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="section products" style="min-height: 60vh; padding-top: 3rem;">
+    <h2>Your Wishlist</h2>
+    <div id="wishlist-container" class="product-grid">
+      <!-- Wishlist items will be injected here -->
+    </div>
+    <p id="empty-msg" style="text-align:center; font-size:1.2rem; color:#555; margin-top: 2rem; display:none;">
+      Your wishlist is empty. Go back to <a href="index.html#products" style="color:#aa6c39;">shop now</a>!
+    </p>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2025 sasvata. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Fetch wishlist from localStorage
+    let wishlist = new Set(JSON.parse(localStorage.getItem('wishlist')) || []);
+
+    // Map of product data (same as in main page)
+    const productsData = {
+      "1": {
+        name: "Golden Aura Earring",
+        price: "Rs.500",
+        img: "images/product1.jpg",
+      },
+      "2": {
+        name: "Elegant Stone Earring",
+        price: "Rs.1000",
+        img: "images/product2.jpg",
+      },
+      "3": {
+        name: "Vintage Earring",
+        price: "Rs.2000",
+        img: "images/product3.jpg",
+      }
+    };
+
+    const wishlistContainer = document.getElementById('wishlist-container');
+    const emptyMsg = document.getElementById('empty-msg');
+
+    function saveWishlist() {
+      localStorage.setItem('wishlist', JSON.stringify([...wishlist]));
+    }
+
+    function renderWishlist() {
+      wishlistContainer.innerHTML = '';
+
+      if (wishlist.size === 0) {
+        emptyMsg.style.display = 'block';
+        return;
+      } else {
+        emptyMsg.style.display = 'none';
+      }
+
+      wishlist.forEach(productId => {
+        const product = productsData[productId];
+        if (!product) return;
+
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.setAttribute('data-product-id', productId);
+
+        card.innerHTML = `
+          <button class="product-wishlist active" aria-label="Remove from wishlist">❤️</button>
+          <img src="${product.img}" alt="${product.name}" />
+          <h3>${product.name}</h3>
+          <p>${product.price}</p>
+        `;
+
+        // Remove from wishlist on button click
+        card.querySelector('.product-wishlist').addEventListener('click', () => {
+          wishlist.delete(productId);
+          saveWishlist();
+          renderWishlist();
+        });
+
+        wishlistContainer.appendChild(card);
+      });
+    }
+
+    renderWishlist();
+  </script>
+</body>
+</html>
