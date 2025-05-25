@@ -8,17 +8,35 @@
 // }
 
 // Search function
-function searchProducts() {
-  const input = document.getElementById('search-input').value.toLowerCase();
-  const products = document.querySelectorAll('.product-card');
+const openSearchBtn = document.getElementById('open-search');
+const closeSearchBtn = document.getElementById('close-search');
+const searchModal = document.getElementById('search-modal');
 
-  products.forEach(product => {
-    const name = product.querySelector('h3').textContent.toLowerCase();
-    product.style.display = name.includes(input) ? 'block' : 'none';
-  });
-}
+openSearchBtn.addEventListener('click', () => {
+  searchModal.setAttribute('aria-hidden', 'false');
+  document.getElementById('modal-search-input').focus();
+});
 
-document.getElementById('search-input')?.addEventListener('input', searchProducts);
+closeSearchBtn.addEventListener('click', () => {
+  searchModal.setAttribute('aria-hidden', 'true');
+  openSearchBtn.focus();
+});
+
+// Close modal on outside click or Escape key
+searchModal.addEventListener('click', (e) => {
+  if (e.target === searchModal) {
+    searchModal.setAttribute('aria-hidden', 'true');
+    openSearchBtn.focus();
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && searchModal.getAttribute('aria-hidden') === 'false') {
+    searchModal.setAttribute('aria-hidden', 'true');
+    openSearchBtn.focus();
+  }
+});
+
 
 // Wishlist logic using localStorage for persistence
 let wishlist = new Set(JSON.parse(localStorage.getItem('wishlist')) || []);
