@@ -20,10 +20,20 @@
       </ul>
  </nav>
      <div class="class="nav-icons"">
-  <div class="search-box">
-    <input type="text" id="search-input" placeholder="Search products..." />
-    <button onclick="searchProducts()">Search</button>
+  <!-- Navbar Search Icon -->
+<button id="open-search" aria-label="Open search" class="search-icon-btn">
+  🔍
+</button>
+
+<!-- Search Modal -->
+<div id="search-modal" class="search-modal" aria-hidden="true">
+  <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="search-modal-title">
+    <button id="close-search" aria-label="Close search" class="close-btn">&times;</button>
+    <h2 id="search-modal-title">Search</h2>
+    <input type="text" id="modal-search-input" placeholder="Type to search..." autofocus />
+    <button id="modal-search-btn">Search</button>
   </div>
+</div>
   <button id="wishlist-icon" aria-label="Wishlist">
     <svg width="24" height="24" fill="none" stroke="#aa6c39" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21.3l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.9z"/>
