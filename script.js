@@ -91,7 +91,6 @@ document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
     cart[productId] = (cart[productId] || 0) + 1; // Increment quantity
     updateCartCount();
     saveCart();
-    alert('Added to cart!');
   });
 });
 
