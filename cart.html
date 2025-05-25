@@ -30,6 +30,16 @@
       border-collapse: collapse;
       margin-bottom: 1rem;
     }
+.cart-product-img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
     th, td {
       padding: 0.8rem;
       border-bottom: 1px solid #ddd;
@@ -112,9 +122,9 @@
   <script>
     // Dummy product data - keep this synced with your main product info!
     const products = {
-      "1": { name: "Golden Aura Earring", price: 500 },
-      "2": { name: "Elegant Stone Earring", price: 1000 },
-      "3": { name: "Vintage Earring", price: 2000 }
+      "1": { name: "Golden Aura Earring", price: 500, image: "images/product1.jpg"},
+      "2": { name: "Elegant Stone Earring", price: 1000 ,image: "images/product2.jpg"},
+      "3": { name: "Vintage Earring", price: 2000 ,image: "images/product3.jpg"}
     };
 
     // Load cart from localStorage or empty object
@@ -151,17 +161,21 @@
         // Create row
         const tr = document.createElement('tr');
 
-        tr.innerHTML = `
-          <td>${product.name}</td>
-          <td>Rs.${product.price}</td>
-          <td>
-            <button class="qty-btn" data-action="decrease" data-id="${productId}">-</button>
-            ${quantity}
-            <button class="qty-btn" data-action="increase" data-id="${productId}">+</button>
-          </td>
-          <td>Rs.${itemTotal}</td>
-          <td><button class="remove-btn" data-id="${productId}">Remove</button></td>
-        `;
+       tr.innerHTML = `
+  <td>
+    <img src="${product.image}" alt="${product.name}" class="cart-product-img" />
+    ${product.name}
+  </td>
+  <td>Rs.${product.price}</td>
+  <td>
+    <button class="qty-btn" data-action="decrease" data-id="${productId}">-</button>
+    ${quantity}
+    <button class="qty-btn" data-action="increase" data-id="${productId}">+</button>
+  </td>
+  <td>Rs.${itemTotal}</td>
+  <td><button class="remove-btn" data-id="${productId}">Remove</button></td>
+`;
+
 
         cartTableBody.appendChild(tr);
       });
