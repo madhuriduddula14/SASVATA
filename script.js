@@ -67,3 +67,34 @@ if (wishlistIcon) {
 
 // Initialize count on load
 updateWishlistCount();
+
+
+// Cart logic using localStorage
+let cart = JSON.parse(localStorage.getItem('cart')) || {};
+
+// Update cart count in navbar (we'll add this later)
+function updateCartCount() {
+  const cartCount = Object.values(cart).reduce((total, qty) => total + qty, 0);
+  document.getElementById('cart-count').textContent = cartCount;
+}
+
+// Save cart to localStorage
+function saveCart() {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+// Add event listeners to all Add to Cart buttons
+document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const productCard = btn.closest('.product-card');
+    const productId = productCard.getAttribute('data-product-id');
+    cart[productId] = (cart[productId] || 0) + 1; // Increment quantity
+    updateCartCount();
+    saveCart();
+    alert('Added to cart!');
+  });
+});
+
+// Initialize cart count on page load
+updateCartCount();
+
