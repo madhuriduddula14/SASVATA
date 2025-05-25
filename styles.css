@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    background-color: #faf7f2;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='600' viewBox='0 0 1200 600'%3E%3Crect width='1200' height='600' fill='%23e5d6c5'/%3E%3Cpath d='M600,150 C750,150 850,250 850,350 C850,450 750,550 600,550 C450,550 350,450 350,350 C350,250 450,150 600,150 Z' fill='%23d4b895' fill-opacity='0.7'/%3E%3Ccircle cx='600' cy='350' r='120' fill='%23f8f3ec'/%3E%3Ccircle cx='600' cy='350' r='80' fill='%23e5d6c5'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-position: center;
+}
+
+.product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: #c8a97e;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.testimonial-slider {
+    scroll-behavior: smooth;
+}
+
+.scroll-btn {
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.scroll-btn:hover {
+    opacity: 1;
+}
