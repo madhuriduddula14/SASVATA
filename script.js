@@ -21,6 +21,22 @@ closeSearchBtn.addEventListener('click', () => {
   searchModal.setAttribute('aria-hidden', 'true');
   openSearchBtn.focus();
 });
+// Search filtering inside modal
+const modalSearchInput = document.getElementById('modal-search-input');
+const allProducts = document.querySelectorAll('.product-card');
+
+modalSearchInput.addEventListener('input', () => {
+  const searchTerm = modalSearchInput.value.trim().toLowerCase();
+
+  allProducts.forEach(product => {
+    const productName = product.querySelector('h3').textContent.toLowerCase();
+    const productCategory = product.querySelector('p').textContent.toLowerCase();
+
+    const match = productName.includes(searchTerm) || productCategory.includes(searchTerm);
+    product.style.display = match ? 'block' : 'none';
+  });
+});
+
 
 // Close modal on outside click or Escape key
 searchModal.addEventListener('click', (e) => {
