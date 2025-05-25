@@ -1,0 +1,39 @@
+/* ---------- wishlist.css ---------- */
+
+.wishlist-container {
+  padding: 2rem;
+}
+
+.wishlist-heading {
+  text-align: center;
+  font-size: 2rem;
+  color: #aa6c39;
+  margin-bottom: 2rem;
+}
+
+.wishlist-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.wishlist-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  padding: 1rem;
+  width: 280px;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.wishlist-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.wishlist-card img {
+  width: 100%;
+  border-radius: 12px;
+}
