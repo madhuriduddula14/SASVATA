@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SASVATA - Cart</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Simple cart page styles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 2rem;
+      background: #f9f7f2;
+      color: #3c3c3c;
+    }
+    h1 {
+      margin-bottom: 1rem;
+      color: #aa6c39;
+    }
+    .cart-container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgb(0 0 0 / 0.1);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1rem;
+    }
+    th, td {
+      padding: 0.8rem;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #f4e6d8;
+      color: #aa6c39;
+    }
+    .qty-btn {
+      cursor: pointer;
+      padding: 0.3rem 0.7rem;
+      margin: 0 0.2rem;
+      background: #aa6c39;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      user-select: none;
+    }
+    .remove-btn {
+      background: #e07a3f;
+      border: none;
+      color: white;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .total {
+      text-align: right;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      color: #aa6c39;
+    }
+    .empty-msg {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      color: #999;
+    }
+    a.back-link {
+      display: inline-block;
+      margin-top: 1rem;
+      text-decoration: none;
+      color: #aa6c39;
+      font-weight: 600;
+    }
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cart-container">
+    <h1>Your Cart</h1>
+    <table id="cart-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Cart items will be injected here -->
+      </tbody>
+    </table>
+
+    <div id="cart-total" class="total"></div>
+
+    <div id="empty-cart-msg" class="empty-msg" style="display:none;">Your cart is empty.</div>
+
+    <a href="index.html" class="back-link">← Continue Shopping</a>
+  </div>
+
+  <script>
+    // Dummy product data - keep this synced with your main product info!
+    const products = {
+      "1": { name: "Golden Aura Earring", price: 500 },
+      "2": { name: "Elegant Stone Earring", price: 1000 },
+      "3": { name: "Vintage Earring", price: 2000 }
+    };
+
+    // Load cart from localStorage or empty object
+    let cart = JSON.parse(localStorage.getItem('cart')) || {};
+
+    const cartTableBody = document.querySelector('#cart-table tbody');
+    const cartTotalEl = document.getElementById('cart-total');
+    const emptyMsg = document.getElementById('empty-cart-msg');
+
+    function renderCart() {
+      cartTableBody.innerHTML = '';
+
+      const productIds = Object.keys(cart);
+
+      if (productIds.length === 0) {
+        emptyMsg.style.display = 'block';
+        cartTotalEl.textContent = '';
+        return;
+      } else {
+        emptyMsg.style.display = 'none';
+      }
+
+      let totalPrice = 0;
+
+      productIds.forEach(productId => {
+        const quantity = cart[productId];
+        const product = products[productId];
+
+        if (!product) return; // skip if product info missing
+
+        const itemTotal = product.price * quantity;
+        totalPrice += itemTotal;
+
+        // Create row
+        const tr = document.createElement('tr');
+
+        tr.innerHTML = `
+          <td>${product.name}</td>
+          <td>Rs.${product.price}</td>
+          <td>
+            <button class="qty-btn" data-action="decrease" data-id="${productId}">-</button>
+            ${quantity}
+            <button class="qty-btn" data-action="increase" data-id="${productId}">+</button>
+          </td>
+          <td>Rs.${itemTotal}</td>
+          <td><button class="remove-btn" data-id="${productId}">Remove</button></td>
+        `;
+
+        cartTableBody.appendChild(tr);
+      });
+
+      cartTotalEl.textContent = `Total: Rs.${totalPrice}`;
+    }
+
+    function saveCart() {
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();
+    }
+
+    function updateCartCount() {
+      const count = Object.values(cart).reduce((sum, qty) => sum + qty, 0);
+      const cartCountEl = window.opener?.document.getElementById('cart-count') || document.getElementById('cart-count');
+      if (cartCountEl) cartCountEl.textContent = count;
+    }
+
+    // Handle clicks on qty buttons and remove buttons
+    cartTableBody.addEventListener('click', e => {
+      const btn = e.target;
+      if (btn.classList.contains('qty-btn')) {
+        const productId = btn.dataset.id;
+        if (btn.dataset.action === 'increase') {
+          cart[productId]++;
+        } else if (btn.dataset.action === 'decrease') {
+          if (cart[productId] > 1) {
+            cart[productId]--;
+          }
+        }
+        saveCart();
+        renderCart();
+      } else if (btn.classList.contains('remove-btn')) {
+        const productId = btn.dataset.id;
+        delete cart[productId];
+        saveCart();
+        renderCart();
+      }
+    });
+
+    // Initial render
+    renderCart();
+    updateCartCount();
+  </script>
+
+</body>
+</html>
