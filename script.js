@@ -36,6 +36,35 @@ modalSearchInput.addEventListener('input', () => {
     product.style.display = match ? 'block' : 'none';
   });
 });
+// 1. Handle modal search "Search" button click
+const modalSearchBtn = document.getElementById('modal-search-btn');
+
+modalSearchBtn.addEventListener('click', () => {
+  const searchTerm = modalSearchInput.value.trim().toLowerCase();
+
+  allProducts.forEach(product => {
+    const productName = product.querySelector('h3').textContent.toLowerCase();
+    const productCategory = product.querySelector('p').textContent.toLowerCase();
+
+    const match = productName.includes(searchTerm) || productCategory.includes(searchTerm);
+    product.style.display = match ? 'block' : 'none';
+  });
+
+  // Optional: Close modal after search
+  searchModal.setAttribute('aria-hidden', 'true');
+  openSearchBtn.focus();
+});
+
+// 2. Allow clicking search icon again to toggle (open/close)
+openSearchBtn.addEventListener('click', () => {
+  const isHidden = searchModal.getAttribute('aria-hidden') === 'true';
+  searchModal.setAttribute('aria-hidden', isHidden ? 'false' : 'true');
+  if (isHidden) {
+    modalSearchInput.focus();
+  } else {
+    openSearchBtn.focus();
+  }
+});
 
 
 // Close modal on outside click or Escape key
