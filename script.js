@@ -98,3 +98,12 @@ document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
 // Initialize cart count on page load
 updateCartCount();
 
+//Make cart icon clickable
+const cartIcon = document.getElementById('cart-icon');
+if (cartIcon) {
+  cartIcon.addEventListener('click', () => {
+    window.location.href = 'cart.html';  // You'll create this page next
+  });
+}
+
+
