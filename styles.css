@@ -55,19 +55,44 @@ body {
 .nav-icons {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 1rem;
+  margin-left: auto;
 }
 
 .search-box {
   display: flex;
   align-items: center;
-  gap: 5px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  padding: 4px 8px;
+  background-color: #fff;
+  transition: box-shadow 0.3s ease;
+}
+.search-box:hover {
+  box-shadow: 0 0 8px rgba(170, 108, 57, 0.6);
 }
 
 .search-box input {
-  padding: 6px 10px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+  border: none;
+  outline: none;
+  padding: 6px 12px;
+  border-radius: 30px 0 0 30px;
+  font-size: 1rem;
+  width: 180px;
+}
+.search-box button {
+  background-color: #aa6c39;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 0 30px 30px 0;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+.search-box button:hover {
+  background-color: #8c5128;
 }
 
 /* Updated search and wishlist container */
@@ -80,16 +105,24 @@ body {
 
 
 /* Wishlist button */
-#wishlist-icon {
-  position: relative;
-  background: transparent;
+#wishlist-icon,
+#cart-icon {
+  background: none;
   border: none;
+  position: relative;
   cursor: pointer;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  transition: transform 0.2s ease;
-  margin-left: 0.5rem;
+}
+
+#wishlist-count,
+#cart-count {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background-color: #aa6c39;
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 50%;
 }
 
 #wishlist-icon svg {
@@ -280,17 +313,7 @@ body {
 }
 
 /* style cart icon on the nav bar */
-#cart-icon {
-  position: relative;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  margin-left: 1rem;
-  transition: transform 0.2s ease;
-}
+
 
 #cart-icon svg {
   stroke: #aa6c39;
